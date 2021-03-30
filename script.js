@@ -51,6 +51,7 @@ let person_hair = document.getElementById("person-hair");
 let person_shoes = document.getElementsByClassName("person-shoes")[0];
 
 let hair_style = document.getElementsByClassName("hair-style");
+let clothes_style = document.getElementsByClassName("clothes-style");
 
 //console.log(person_skin);
 //console.log(person_clothes);
@@ -99,19 +100,7 @@ let radio_female = radios[1];
 //console.log(sex);
 };
 
-
-/* ready.addEventListener("click", () => {
-    console.log("info-атрибуты нашего кандидата готовы!");
-customInfo();
-console.log(name, age, sex, pol_views);
-console.log(biography);   
-
-}); */
- 
 // Slider - president
-
-
-
   
 function showSlides_Skin(slides, prev, next, m, f) {
  let n = 1;    
@@ -159,7 +148,7 @@ function showSlides_Skin(slides, prev, next, m, f) {
        showSlides(n);
        
       function showSlides(n) {
- console.log(sex, m, f, slides);      
+// console.log(sex, m, f, slides);      
        let slideIndex = n;
       
    // console.log(n, slideIndex, slides);
@@ -225,53 +214,81 @@ function showSlides_Skin(slides, prev, next, m, f) {
       });
        
      };
-
-
-
-function showSlides_Clothes(slides, prev, next, m, f) {
+     function showSlides_Clothes(sex, slides, prev, next, m, f) {
+      
         let n = 1;    
            showSlides(n);
-//console.log(m, f, prev, next);           
-    function showSlides(n) {
            
+          function showSlides(n) {
+     console.log(sex, m, f, slides);      
            let slideIndex = n;
           
-//        console.log(n, slideIndex, slides, m, f);
+       // console.log(n, slideIndex, slides);
             
            for( let i = 0; i < slides.length; i++) {
                slides[i].style.display = 'none';
            };
-
-        //       console.log(slideIndex); 
+       //console.log(slideIndex); 
            slides[slideIndex - 1].style.display = 'block';
-    //    console.log(slides);
+        //console.log(slides);
           
            customCandidate(slideIndex, m, f);
-    }; 
+       }; 
            
            prev.addEventListener('click', function() {
            //    console.log(slides);
            if(n <= slides.length) {n = n - 1};
            if(n < 1) {n = slides.length};
-           if(m === 3 || f === 3) { 
-           showSlides(n);
+           if(sex === "male") {
+            console.log(slides, m, f);
+             clothes_style[3].style.display = 'none';
+             clothes_style[4].style.display = 'none';
+             clothes_style[5].style.display = 'none';
+            showSlides(n); 
            }
-           });
+                  
+           if(sex === "female") {
+            console.log(slides, m, f); 
+            clothes_style[0].style.display = 'none';
+            clothes_style[1].style.display = 'none';
+            clothes_style[2].style.display = 'none';
+            showSlides(n);
+           }
+           showSlides(n);
+           
+          });
            
            next.addEventListener('click', function() {
-           //    console.log(slides);
-           if(n < slides.length) {n = n + 1} else {n = 1};
-           if( m === 3 || f === 3) {
-           // console.log(slides, m, f);   
-           showSlides(n);
-           }
-           });
+               console.log(m, f, slides);
+           if(n < slides.length) {n = n + 1} else {n = 1}
+           console.log(sex, slides);
            
-    };     
-
+           if(sex === "male") {
+            console.log(slides, m, f);
+             clothes_style[3].style.display = 'none';
+             clothes_style[4].style.display = 'none';
+             clothes_style[5].style.display = 'none';
+            showSlides(n); 
+           }
+                  
+           if(sex === "female") {
+            console.log(slides, m, f); 
+            clothes_style[0].style.display = 'none';
+            clothes_style[1].style.display = 'none';
+            clothes_style[2].style.display = 'none';
+            showSlides(n);
+           }
+           
+    
+           // console.log(slides, m, f);   
+        //   showSlides(n);
+           
+          });
+           
+         };     
 function customCandidate(slideIndex, m, f) {
    
-//    console.log(slideIndex, m, f);
+    console.log(slideIndex, m, f);
 
  if(m === 1) {
  
@@ -431,7 +448,7 @@ let m1, f1;
 customHair(sex);   
     function customHair(sex) {
 // 
-  console.log(sex);
+//  console.log(sex);
 
 let m2, f2, slides2m, slides2f;             
  let elems_hair = document.getElementsByClassName('hair')[0]; 
@@ -444,7 +461,7 @@ let m2, f2, slides2m, slides2f;
 // console.log(prev2, next2);
 
 let slides2 = document.getElementsByClassName('hair-style'); 
-console.log("aaa", slides2.length, slides2);
+//console.log("aaa", slides2.length, slides2);
 for( let i = 0; i < slides2.length; i++) {
     slides2[i].style.display = 'none';
 };
@@ -452,14 +469,14 @@ for( let i = 0; i < slides2.length; i++) {
         m2 = 2; // индекс для male
         f2 = 0;
      slides2m = [slides2[0], slides2[1], slides2[2]];
-        console.log("2m", slides2m); 
+//        console.log("2m", slides2m); 
         showSlides_Hair(sex, slides2m, prev2, next2, m2, f2);
 
         } else if(sex === "female") {
             f2 = 2;   // индекс для female 
             m2 = 0;
      slides2f = [slides2[3], slides2[4], slides2[5]]; 
-    console.log("fff", slides2f);
+//    console.log("fff", slides2f);
     
        showSlides_Hair(sex, slides2f, prev2, next2, m2, f2);
      //   console.log(slideIndex);
@@ -468,41 +485,51 @@ for( let i = 0; i < slides2.length; i++) {
     };
 
 customClothes(sex); 
-    function customClothes(sex) {
-        
-let m, f;             
-let elems_clothes = document.getElementsByClassName('clothes')[0]; 
-let childs = elems_clothes.childNodes;   
-let prev3 = childs[1];
-let next3 = childs[15];
-//console.log(elems_hair);
-//console.log(childs);
-// console.log(prev3, next3);
-            
-let slides3 = document.getElementsByClassName('clothes-style'); 
-            
+function customClothes(sex) {
+    // 
+      console.log(sex);
+    
+    let m3, f3, slides3m, slides3f;             
+     let elems_clothes = document.getElementsByClassName('clothes')[0]; 
+    
+     let childs3 = elems_clothes.childNodes;   
+     let prev3 = childs3[1];
+     let next3 = childs3[15];
+     console.log(elems_clothes);
+     //console.log(childs3);
+     console.log(prev3, next3);
+    
+    let slides3 = document.getElementsByClassName('clothes-style'); 
+    console.log("aaa", slides3.length, slides3f);
     for( let i = 0; i < slides3.length; i++) {
-    slides3[i].style.display = 'none';
+        slides3[i].style.display = 'none';
     };
-if(sex === "male") {
-m = 3; // индекс для male
-f = 0;
-let slides3m = [slides3[0], slides3[1], slides3[2]];
-                
-//    console.log(slides2m);    
- showSlides_Clothes(slides3m,prev3, next3, m, f);
-//       console.log(slideIndex);
-} else if(sex === "female") {
-f = 3;   // индекс для female 
-m = 0;
-let slides3f = [slides3[3], slides3[4], slides3[5]];       
- showSlides_Clothes(slides3f,prev3, next3, m, f);
-//   console.log(slideIndex);
-}
-                     
-};  
-
+            if(sex === "male") {
+            m3 = 3; // индекс для male
+            f3 = 0;
+         slides3m = [slides3[0], slides3[1], slides3[2]];
+            console.log("3m", slides3m); 
+            showSlides_Clothes(sex, slides3m, prev3, next3, m3, f3);
+    
+            } else if(sex === "female") {
+                f3 = 3;   // индекс для female 
+                m3 = 0;
+         slides3f = [slides3[3], slides3[4], slides3[5]]; 
+        console.log("fff", slides3f);
+        
+           showSlides_Clothes(sex, slides3f, prev3, next3, m3, f3);
+         //   console.log(slideIndex);
+            }
+             
+        };
 };
 
+/* ready.addEventListener("click", () => {
+    console.log("info-атрибуты нашего кандидата готовы!");
+customInfo();
+console.log(name, age, sex, pol_views);
+console.log(biography);   
+
+}); */
 
 });
