@@ -550,6 +550,30 @@ console.log(custom_candidate);
 
 main_cards_item.after(custom_candidate);
 
+custom_candidate.querySelector('.name').innerHTML = name;
+
+custom_candidate.querySelector('.age').innerHTML = age;
+
+custom_candidate.querySelector('.sex').innerHTML = sex;
+
+custom_candidate.querySelector('.views').innerHTML = pol_views;
+
+custom_candidate.querySelector('.bio').innerHTML = biography;
+
+let castom_candidate_photo = document.getElementsByClassName('photo-2')[1];
+
+//console.log(castom_candidate_photo);
+
+//castom_candidate_photo.style.display = "none";
+
+
+
+
+
+
+
+
+
 
 
 
