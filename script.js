@@ -553,7 +553,7 @@ main_cards_item.after(custom_candidate);
 
 
 
-
+////////////
 //return candidate;
 }); 
 
