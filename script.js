@@ -577,7 +577,7 @@ let castom_candidate_photo = document.getElementsByClassName('photo-2')[1];
 
 
 
-////////////
+//
 //return candidate;
 }); 
 
