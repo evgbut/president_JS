@@ -20,17 +20,17 @@ over.addEventListener('click', function() {
 });
 
 // Customization
-
- let custom_info = document.querySelector('.custom-info');
+let custom_block = document.getElementsByClassName('custom')[0];
+let custom_info = document.querySelector('.custom-info');
 let custom_char = document.querySelector('.custom-char');
 let custom_style = document.querySelector('.custom-style');
-let name = document.getElementById('name');
-let age = document.getElementById('age');
+let name_input = document.getElementById('name');
+let age_input = document.getElementById('age');
 /* let male = document.getElementById('male');
 let female = document.getElementById('female'); */
-let pol_views = document.getElementById('select');
-let biography = document.getElementById('bio');
-
+let pol_views_input = document.getElementById('select');
+let biography_input = document.getElementById('bio');
+let sex = "male";
 
 //console.log(custom);
 //console.log(custom_info);
@@ -42,7 +42,7 @@ custom_char.style.display = "block";
 custom_style.style.display = "block";
 
 const ready = document.getElementById("ready");
-
+let name, age, pol_views, biography;
  
 
 let person_skin = document.getElementById("person-skin");
@@ -62,23 +62,21 @@ let clothes_style = document.getElementsByClassName("clothes-style");
 
 customInfo();
 function customInfo() {
-let j = 1;    
-    name = name.value;
-    age = age.value;
-  
+    name = name_input.value;
+    age = age_input.value;
+
 let radios = document.getElementsByName("sex");
 //console.log(radios);   
 let radio_male = radios[0];
 let radio_female = radios[1];
-
-
 
   radio_male.addEventListener("click", () => {
     radio_female.removeAttribute("checked"); 
     if (radio_female.checked == false) {
      radio_male.setAttribute("checked", "checked")
     }
-    customStyle("male");
+    sex = "male";
+    customStyle(sex);
   });  
 
  radio_female.addEventListener("click", () => {
@@ -86,17 +84,16 @@ let radio_female = radios[1];
        if (radio_male.checked == false) {
         radio_female.setAttribute("checked", "checked");
         }
-        customStyle("female");
+        sex = "female";
+        customStyle(sex);
   });
 
-  
- 
-    pol_views = pol_views.value;
+    pol_views = pol_views_input.value;
 //console.log(pol_views); 
 
-    biography = biography.value;
+    biography = biography_input.value;
 
-//return name, age, sex, pol_views, biography;
+return name, age, sex, pol_views, biography;
 //console.log(sex);
 };
 
@@ -168,7 +165,7 @@ function showSlides_Skin(slides, prev, next, m, f) {
        if(n <= slides.length) {n = n - 1};
        if(n < 1) {n = slides.length};
        if(sex === "male") {
-        console.log(slides, m, f);
+//        console.log(slides, m, f);
          hair_style[3].style.display = 'none';
          hair_style[4].style.display = 'none';
          hair_style[5].style.display = 'none';
@@ -176,7 +173,7 @@ function showSlides_Skin(slides, prev, next, m, f) {
        }
               
        if(sex === "female") {
-        console.log(slides, m, f); 
+//        console.log(slides, m, f); 
         hair_style[0].style.display = 'none';
         hair_style[1].style.display = 'none';
         hair_style[2].style.display = 'none';
@@ -187,12 +184,12 @@ function showSlides_Skin(slides, prev, next, m, f) {
       });
        
        next.addEventListener('click', function() {
-           console.log(m, f, slides);
+//           console.log(m, f, slides);
        if(n < slides.length) {n = n + 1} else {n = 1}
-       console.log(sex, slides);
+//      console.log(sex, slides);
        
        if(sex === "male") {
-        console.log(slides, m, f);
+ //       console.log(slides, m, f);
          hair_style[3].style.display = 'none';
          hair_style[4].style.display = 'none';
          hair_style[5].style.display = 'none';
@@ -200,7 +197,7 @@ function showSlides_Skin(slides, prev, next, m, f) {
        }
               
        if(sex === "female") {
-        console.log(slides, m, f); 
+//        console.log(slides, m, f); 
         hair_style[0].style.display = 'none';
         hair_style[1].style.display = 'none';
         hair_style[2].style.display = 'none';
@@ -220,7 +217,7 @@ function showSlides_Skin(slides, prev, next, m, f) {
            showSlides(n);
            
           function showSlides(n) {
-     console.log(sex, m, f, slides);      
+//     console.log(sex, m, f, slides);      
            let slideIndex = n;
           
        // console.log(n, slideIndex, slides);
@@ -240,7 +237,7 @@ function showSlides_Skin(slides, prev, next, m, f) {
            if(n <= slides.length) {n = n - 1};
            if(n < 1) {n = slides.length};
            if(sex === "male") {
-            console.log(slides, m, f);
+//            console.log(slides, m, f);
              clothes_style[3].style.display = 'none';
              clothes_style[4].style.display = 'none';
              clothes_style[5].style.display = 'none';
@@ -248,7 +245,7 @@ function showSlides_Skin(slides, prev, next, m, f) {
            }
                   
            if(sex === "female") {
-            console.log(slides, m, f); 
+//            console.log(slides, m, f); 
             clothes_style[0].style.display = 'none';
             clothes_style[1].style.display = 'none';
             clothes_style[2].style.display = 'none';
@@ -259,12 +256,12 @@ function showSlides_Skin(slides, prev, next, m, f) {
           });
            
            next.addEventListener('click', function() {
-               console.log(m, f, slides);
+ //              console.log(m, f, slides);
            if(n < slides.length) {n = n + 1} else {n = 1}
-           console.log(sex, slides);
+//           console.log(sex, slides);
            
            if(sex === "male") {
-            console.log(slides, m, f);
+//            console.log(slides, m, f);
              clothes_style[3].style.display = 'none';
              clothes_style[4].style.display = 'none';
              clothes_style[5].style.display = 'none';
@@ -272,7 +269,7 @@ function showSlides_Skin(slides, prev, next, m, f) {
            }
                   
            if(sex === "female") {
-            console.log(slides, m, f); 
+//            console.log(slides, m, f); 
             clothes_style[0].style.display = 'none';
             clothes_style[1].style.display = 'none';
             clothes_style[2].style.display = 'none';
@@ -288,7 +285,7 @@ function showSlides_Skin(slides, prev, next, m, f) {
          };     
 function customCandidate(slideIndex, m, f) {
    
-    console.log(slideIndex, m, f);
+ //   console.log(slideIndex, m, f);
 
  if(m === 1) {
  
@@ -412,7 +409,7 @@ function customCandidate(slideIndex, m, f) {
   
 }
 
-customStyle("male");
+customStyle(sex);
 function customStyle(sex) {
   
 // console.log(sex);
@@ -487,7 +484,7 @@ for( let i = 0; i < slides2.length; i++) {
 customClothes(sex); 
 function customClothes(sex) {
     // 
-      console.log(sex);
+//      console.log(sex);
     
     let m3, f3, slides3m, slides3f;             
      let elems_clothes = document.getElementsByClassName('clothes')[0]; 
@@ -495,12 +492,12 @@ function customClothes(sex) {
      let childs3 = elems_clothes.childNodes;   
      let prev3 = childs3[1];
      let next3 = childs3[15];
-     console.log(elems_clothes);
+//     console.log(elems_clothes);
      //console.log(childs3);
-     console.log(prev3, next3);
+//     console.log(prev3, next3);
     
     let slides3 = document.getElementsByClassName('clothes-style'); 
-    console.log("aaa", slides3.length, slides3f);
+//    console.log("aaa", slides3.length, slides3f);
     for( let i = 0; i < slides3.length; i++) {
         slides3[i].style.display = 'none';
     };
@@ -508,14 +505,14 @@ function customClothes(sex) {
             m3 = 3; // индекс для male
             f3 = 0;
          slides3m = [slides3[0], slides3[1], slides3[2]];
-            console.log("3m", slides3m); 
+//            console.log("3m", slides3m); 
             showSlides_Clothes(sex, slides3m, prev3, next3, m3, f3);
     
             } else if(sex === "female") {
                 f3 = 3;   // индекс для female 
                 m3 = 0;
          slides3f = [slides3[3], slides3[4], slides3[5]]; 
-        console.log("fff", slides3f);
+//        console.log("fff", slides3f);
         
            showSlides_Clothes(sex, slides3f, prev3, next3, m3, f3);
          //   console.log(slideIndex);
@@ -524,12 +521,40 @@ function customClothes(sex) {
         };
 };
 
-/* ready.addEventListener("click", () => {
+ 
+
+ready.addEventListener("click", () => {
     console.log("info-атрибуты нашего кандидата готовы!");
 customInfo();
-console.log(name, age, sex, pol_views);
-console.log(biography);   
+//console.log(name, age, sex, pol_views);
+//console.log(biography);   
 
-}); */
+let candidate = {
+    name: name,
+    age: age,
+    sex: sex,
+    pol_views: pol_views,
+    biography: biography
+}
+  console.log(candidate);
+  
+  custom_block.style.display = "none";
+//console.log(custom_block);
+  main.style.display = "block"; 
+
+  let main_cards_item = document.getElementsByClassName('main-cards-item')[1];
+console.log(main_cards_item);
+
+let custom_candidate = main_cards_item.cloneNode(true);
+console.log(custom_candidate);
+
+main_cards_item.after(custom_candidate);
+
+
+
+
+
+//return candidate;
+}); 
 
 });
