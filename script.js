@@ -521,10 +521,10 @@ function customClothes(sex) {
         };
 };
 
- 
+
 
 ready.addEventListener("click", () => {
-    console.log("info-атрибуты нашего кандидата готовы!");
+//    console.log("info-атрибуты нашего кандидата готовы!");
 customInfo();
 //console.log(name, age, sex, pol_views);
 //console.log(biography);   
@@ -534,19 +534,19 @@ let candidate = {
     age: age,
     sex: sex,
     pol_views: pol_views,
-    biography: biography
+    biography: biography,
 }
-  console.log(candidate);
+//  console.log(candidate);
   
   custom_block.style.display = "none";
 //console.log(custom_block);
   main.style.display = "block"; 
 
   let main_cards_item = document.getElementsByClassName('main-cards-item')[1];
-console.log(main_cards_item);
+//console.log(main_cards_item);
 
 let custom_candidate = main_cards_item.cloneNode(true);
-console.log(custom_candidate);
+//console.log(custom_candidate);
 
 main_cards_item.after(custom_candidate);
 
@@ -564,7 +564,95 @@ let castom_candidate_photo = document.getElementsByClassName('photo-2')[1];
 
 //console.log(castom_candidate_photo);
 
-//castom_candidate_photo.style.display = "none";
+castom_candidate_photo.style.display = "none";
+
+ 
+
+ let candidate_image = document.getElementsByClassName('person construct')[0];
+
+// console.log(candidate_image); 
+
+let candidate_image_clone = candidate_image.cloneNode(true);
+
+//console.log(candidate_image_clone);
+
+let candidate_block = document.getElementsByClassName('candidate-block')[2];
+//console.log(candidate_block);
+
+let candidate_block_result = document.getElementsByClassName('result')[2];
+//console.log(candidate_block_result);
+
+candidate_block_result.before(candidate_image_clone);
+
+// Поправляем вёрстку:
+
+let candidate_skin = document.getElementsByClassName('person-skin')[0];
+//console.log(candidate_skin);
+let candidate_clothes = document.getElementsByClassName('person-clothes')[0];
+//console.log(candidate_clothes);
+let candidate_hair = document.getElementsByClassName('person-hair')[0];
+//console.log(candidate_hair);
+let candidate_shoes = document.getElementsByClassName('person-shoes')[0];
+//console.log(candidate_shoes);
+
+// console.log(sex);
+candidate_image_clone.style.marginRight = "30px";
+
+ if(sex === "male") {
+
+   candidate_hair.style.backgroundSize = '33%';
+   candidate_hair.style.marginTop = '-87px';
+ //console.log(candidate_hair);
+ 
+   candidate_clothes.style.backgroundSize = '93%';
+   candidate_clothes.style.marginTop = '17px';
+ //console.log(candidate_clothes);
+
+}
+
+ if(sex === "female") {
+
+//    console.log(candidate_hair.style[0]);
+    let str_hair = candidate_hair.style.backgroundImage;
+//  console.log(str_hair);
+//console.log(str_hair.indexOf('hair-4.png'));    
+
+    if(str_hair.indexOf('hair-4.png') === 22) { 
+        candidate_hair.style.backgroundSize = '28%';
+        candidate_hair.style.marginTop = '-81px';
+        //console.log(candidate_hair);
+      } 
+      if(str_hair.indexOf('hair-5.png') === 22) { 
+        candidate_hair.style.backgroundSize = '31%';
+        candidate_hair.style.marginTop = '-82px';
+        //console.log(candidate_hair);
+      } 
+      if(str_hair.indexOf('hair-6.png') === 22) { 
+        candidate_hair.style.backgroundSize = '30%';
+        candidate_hair.style.marginTop = '-80px';
+        //console.log(candidate_hair);
+      } 
+    
+//  console.log(candidate_clothes.style[0]);
+  let str_clothes = candidate_clothes.style.backgroundImage;
+//  console.log(str_clothes);
+
+  if(str_clothes.indexOf('clothes-4.png') === 25) { 
+    candidate_clothes.style.backgroundSize = '77%';
+    candidate_clothes.style.marginTop = '18px';
+    //console.log(candidate_clothes);
+  } 
+  if(str_clothes.indexOf('clothes-5.png') === 25) { 
+    candidate_clothes.style.backgroundSize = '79%';
+    candidate_clothes.style.marginTop = '-13px';
+    //console.log(candidate_clothes);
+  } 
+  if(str_clothes.indexOf('clothes-6.png') === 25) { 
+    candidate_clothes.style.backgroundSize = '56%';
+    candidate_clothes.style.marginTop = '-2px';
+    //console.log(candidate_clothes);
+  } 
+}
 
 
 
@@ -572,12 +660,6 @@ let castom_candidate_photo = document.getElementsByClassName('photo-2')[1];
 
 
 
-
-
-
-
-
-////////////
 //return candidate;
 }); 
 
