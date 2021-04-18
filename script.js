@@ -20,17 +20,18 @@ over.addEventListener('click', function() {
 });
 
 // Customization
-let custom_block = document.getElementsByClassName('custom')[0];
+
 let custom_info = document.querySelector('.custom-info');
 let custom_char = document.querySelector('.custom-char');
 let custom_style = document.querySelector('.custom-style');
 let name_input = document.getElementById('name');
 let age_input = document.getElementById('age');
-/* let male = document.getElementById('male');
-let female = document.getElementById('female'); */
+let male = document.getElementById('male');
+let female = document.getElementById('female');
 let pol_views_input = document.getElementById('select');
 let biography_input = document.getElementById('bio');
 let sex = "male";
+let reset_index = 0;
 
 //console.log(custom);
 //console.log(custom_info);
@@ -43,6 +44,8 @@ custom_style.style.display = "block";
 
 const ready = document.getElementById("ready");
 let name, age, pol_views, biography;
+
+const reset = document.getElementById("reset");
  
 
 let person_skin = document.getElementById("person-skin");
@@ -53,6 +56,8 @@ let person_shoes = document.getElementsByClassName("person-shoes")[0];
 let hair_style = document.getElementsByClassName("hair-style");
 let clothes_style = document.getElementsByClassName("clothes-style");
 
+
+
 //console.log(person_skin);
 //console.log(person_clothes);
 //console.log(person_hair);
@@ -62,13 +67,37 @@ let clothes_style = document.getElementsByClassName("clothes-style");
 
 customInfo();
 function customInfo() {
+  
     name = name_input.value;
     age = age_input.value;
-
-let radios = document.getElementsByName("sex");
+    pol_views = pol_views_input.value;
+   //console.log(pol_views); 
+    biography = biography_input.value;
+    //console.log(biography);
+  
+    let radios = document.getElementsByName("sex"); 
 //console.log(radios);   
-let radio_male = radios[0];
-let radio_female = radios[1];
+ let radio_male = radios[0];
+ let radio_female = radios[1]; 
+//   console.log(reset_index, sex);
+
+  if(reset_index === 1) {
+    name_input.value = "";
+  //  console.log(name_input.value);
+    age_input.value = "";
+  //  console.log(age_input.value);
+    pol_views_input.value = "Либеральные";
+    biography_input.value = "";
+     
+  if(sex === "female") {
+    radio_female.removeAttribute("checked"); 
+    radio_male.setAttribute("checked", "checked");
+    radio_male.checked = "true";
+    sex = "male";
+    }
+//    customStyle(sex);
+  }
+
 
   radio_male.addEventListener("click", () => {
     radio_female.removeAttribute("checked"); 
@@ -88,14 +117,13 @@ let radio_female = radios[1];
         customStyle(sex);
   });
 
-    pol_views = pol_views_input.value;
-//console.log(pol_views); 
+  customStyle(sex);
 
-    biography = biography_input.value;
-
-return name, age, sex, pol_views, biography;
+  return name, age, sex, pol_views, biography;
 //console.log(sex);
 };
+
+
 
 // Slider - president
   
@@ -115,8 +143,9 @@ function showSlides_Skin(slides, prev, next, m, f) {
 //console.log(slideIndex); 
     slides[slideIndex - 1].style.display = 'block';
  //console.log(slides);
+// console.log(reset_index);
    
-    customCandidate(slideIndex, m, f);
+  customCandidate(slideIndex, m, f);
 }; 
     
     prev.addEventListener('click', function() {
@@ -411,7 +440,7 @@ function customCandidate(slideIndex, m, f) {
 
 customStyle(sex);
 function customStyle(sex) {
-  
+
 // console.log(sex);
 
 customSkin(sex);
@@ -429,7 +458,12 @@ let m1, f1;
     if(sex === "male") {
     m1 = 1; // индекс для male
     f1 = 0;
-    
+//  console.log(reset_index);  
+      if(reset_index === 1) {
+
+      }
+
+
     showSlides_Skin(slides1, prev1, next1, m1, f1);
   //  console.log(slideIndex);
     } else if(sex === "female") {
@@ -522,34 +556,25 @@ function customClothes(sex) {
 };
 
 
-
 ready.addEventListener("click", () => {
-//    console.log("info-атрибуты нашего кандидата готовы!");
+console.log(reset_index);
 customInfo();
 //console.log(name, age, sex, pol_views);
 //console.log(biography);   
-
-let candidate = {
-    name: name,
-    age: age,
-    sex: sex,
-    pol_views: pol_views,
-    biography: biography,
-}
-//  console.log(candidate);
+//console.log(sex);
   
-  custom_block.style.display = "none";
-//console.log(custom_block);
+  custom.style.display = "none";
+
   main.style.display = "block"; 
 
   let main_cards_item = document.getElementsByClassName('main-cards-item')[1];
-//console.log(main_cards_item);
+console.log(main_cards_item);
 
 let custom_candidate = main_cards_item.cloneNode(true);
-//console.log(custom_candidate);
+console.log(custom_candidate);
 
 main_cards_item.after(custom_candidate);
-
+//-------------------------------------
 custom_candidate.querySelector('.name').innerHTML = name;
 
 custom_candidate.querySelector('.age').innerHTML = age;
@@ -559,7 +584,7 @@ custom_candidate.querySelector('.sex').innerHTML = sex;
 custom_candidate.querySelector('.views').innerHTML = pol_views;
 
 custom_candidate.querySelector('.bio').innerHTML = biography;
-
+//-------------------------------------
 let castom_candidate_photo = document.getElementsByClassName('photo-2')[1];
 
 //console.log(castom_candidate_photo);
@@ -570,7 +595,7 @@ castom_candidate_photo.style.display = "none";
 
  let candidate_image = document.getElementsByClassName('person construct')[0];
 
-// console.log(candidate_image); 
+//  console.log(candidate_image); 
 
 let candidate_image_clone = candidate_image.cloneNode(true);
 
@@ -585,7 +610,7 @@ let candidate_block_result = document.getElementsByClassName('result')[2];
 candidate_block_result.before(candidate_image_clone);
 
 // Поправляем вёрстку:
-
+//------------------------
 let candidate_skin = document.getElementsByClassName('person-skin')[0];
 //console.log(candidate_skin);
 let candidate_clothes = document.getElementsByClassName('person-clothes')[0];
@@ -635,7 +660,7 @@ candidate_image_clone.style.marginRight = "30px";
     
 //  console.log(candidate_clothes.style[0]);
   let str_clothes = candidate_clothes.style.backgroundImage;
-//  console.log(str_clothes);
+  console.log(str_clothes);
 
   if(str_clothes.indexOf('clothes-4.png') === 25) { 
     candidate_clothes.style.backgroundSize = '77%';
@@ -653,14 +678,20 @@ candidate_image_clone.style.marginRight = "30px";
     //console.log(candidate_clothes);
   } 
 }
+// -------------------------------
 
+reset.addEventListener("click", () => {
+  reset_index = 1;
+   main.style.display = "none";
+   custom.style.display = "flex";
+   custom_candidate.style.display = "none";
+//   candidate_image_clone.style.display = "none";
+   customInfo();
+   
+});
 
-
-
-
-
-
-//return candidate;
 }); 
+
+
 
 });
