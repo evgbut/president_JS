@@ -32,6 +32,7 @@ let pol_views_input = document.getElementById('select');
 let biography_input = document.getElementById('bio');
 let sex = "male";
 let reset_index = 0;
+let name, age, pol_views, biography;
 
 //console.log(custom);
 //console.log(custom_info);
@@ -43,10 +44,7 @@ custom_char.style.display = "block";
 custom_style.style.display = "block";
 
 const ready = document.getElementById("ready");
-let name, age, pol_views, biography;
-
 const reset = document.getElementById("reset");
- 
 
 let person_skin = document.getElementById("person-skin");
 let person_clothes = document.getElementById("person-clothes");
@@ -56,6 +54,7 @@ let person_shoes = document.getElementsByClassName("person-shoes")[0];
 let hair_style = document.getElementsByClassName("hair-style");
 let clothes_style = document.getElementsByClassName("clothes-style");
 
+let our_candidate_image = document.getElementsByClassName('person construct')[0];
 
 
 //console.log(person_skin);
@@ -67,14 +66,27 @@ let clothes_style = document.getElementsByClassName("clothes-style");
 
 customInfo();
 function customInfo() {
-  
+      
+  name_input.onchange = function() {
     name = name_input.value;
+      console.log(name);
+  };
+
+  age_input.onchange = function() {
     age = age_input.value;
+      console.log(age);
+    };
+
+  pol_views_input.onchange = function() {
     pol_views = pol_views_input.value;
-   //console.log(pol_views); 
+        console.log(pol_views);
+    };
+
+  biography_input.oninput = function() {
     biography = biography_input.value;
-    //console.log(biography);
-  
+        console.log(biography);
+      };
+
     let radios = document.getElementsByName("sex"); 
 //console.log(radios);   
  let radio_male = radios[0];
@@ -82,21 +94,37 @@ function customInfo() {
 //   console.log(reset_index, sex);
 
   if(reset_index === 1) {
+  console.log(reset_index);  
     name_input.value = "";
-  //  console.log(name_input.value);
+  console.log(name_input.value);
     age_input.value = "";
-  //  console.log(age_input.value);
+  console.log(age_input.value);
     pol_views_input.value = "Либеральные";
+  console.log(pol_views);  
     biography_input.value = "";
-     
-  if(sex === "female") {
-    radio_female.removeAttribute("checked"); 
-    radio_male.setAttribute("checked", "checked");
-    radio_male.checked = "true";
-    sex = "male";
-    }
-//    customStyle(sex);
-  }
+  console.log(biography);  
+
+    name_input.onchange = function() {
+      name = name_input.value;
+        console.log(name);
+    };
+  
+    age_input.onchange = function() {
+      age = age_input.value;
+        console.log(age);
+      };
+  
+    pol_views_input.onchange = function() {
+      pol_views = pol_views_input.value;
+          console.log(pol_views);
+      };
+  
+    biography_input.oninput = function() {
+      biography = biography_input.value;
+          console.log(biography);
+        };
+      
+  } 
 
 
   radio_male.addEventListener("click", () => {
@@ -117,15 +145,11 @@ function customInfo() {
         customStyle(sex);
   });
 
-  customStyle(sex);
-
-  return name, age, sex, pol_views, biography;
+//   return name, age, sex, pol_views, biography;
 //console.log(sex);
 };
 
-
-
-// Slider - president
+//   Slider - president
   
 function showSlides_Skin(slides, prev, next, m, f) {
  let n = 1;    
@@ -168,7 +192,7 @@ function showSlides_Skin(slides, prev, next, m, f) {
     
   };
 
-  function showSlides_Hair(sex, slides, prev, next, m, f) {
+function showSlides_Hair(sex, slides, prev, next, m, f) {
       
     let n = 1;    
        showSlides(n);
@@ -240,7 +264,7 @@ function showSlides_Skin(slides, prev, next, m, f) {
       });
        
      };
-     function showSlides_Clothes(sex, slides, prev, next, m, f) {
+function showSlides_Clothes(sex, slides, prev, next, m, f) {
       
         let n = 1;    
            showSlides(n);
@@ -311,7 +335,8 @@ function showSlides_Skin(slides, prev, next, m, f) {
            
           });
            
-         };     
+         }; 
+
 function customCandidate(slideIndex, m, f) {
    
  //   console.log(slideIndex, m, f);
@@ -435,7 +460,7 @@ function customCandidate(slideIndex, m, f) {
        break;
     }  
  }
-  
+ 
 }
 
 customStyle(sex);
@@ -556,50 +581,50 @@ function customClothes(sex) {
 };
 
 
+
 ready.addEventListener("click", () => {
 console.log(reset_index);
-customInfo();
-//console.log(name, age, sex, pol_views);
-//console.log(biography);   
+//customInfo();
+console.log(name, age, sex, pol_views);
+console.log(biography);   
 //console.log(sex);
+//console.log(our_candidate_image);
   
   custom.style.display = "none";
 
   main.style.display = "block"; 
 
   let main_cards_item = document.getElementsByClassName('main-cards-item')[1];
-console.log(main_cards_item);
+//console.log(main_cards_item);
+// Клонируем блок соперника-женщины:
+let our_custom_candidate = main_cards_item.cloneNode(true);
+//console.log(our_custom_candidate);
 
-let custom_candidate = main_cards_item.cloneNode(true);
-console.log(custom_candidate);
-
-main_cards_item.after(custom_candidate);
+main_cards_item.after(our_custom_candidate);
 //-------------------------------------
-custom_candidate.querySelector('.name').innerHTML = name;
+our_custom_candidate.querySelector('.name').innerHTML = name;
 
-custom_candidate.querySelector('.age').innerHTML = age;
+our_custom_candidate.querySelector('.age').innerHTML = age;
 
-custom_candidate.querySelector('.sex').innerHTML = sex;
+our_custom_candidate.querySelector('.sex').innerHTML = sex;
 
-custom_candidate.querySelector('.views').innerHTML = pol_views;
+our_custom_candidate.querySelector('.views').innerHTML = pol_views;
 
-custom_candidate.querySelector('.bio').innerHTML = biography;
+our_custom_candidate.querySelector('.bio').innerHTML = biography;
 //-------------------------------------
-let castom_candidate_photo = document.getElementsByClassName('photo-2')[1];
+let candidate_photo = document.getElementsByClassName('photo-2')[1];
 
 //console.log(castom_candidate_photo);
 
-castom_candidate_photo.style.display = "none";
+candidate_photo.style.display = "none";
 
- 
+//---
+//console.log(our_candidate_image);
+//---
 
- let candidate_image = document.getElementsByClassName('person construct')[0];
+let our_candidate_image_clone = our_candidate_image.cloneNode(true);
 
-//  console.log(candidate_image); 
-
-let candidate_image_clone = candidate_image.cloneNode(true);
-
-//console.log(candidate_image_clone);
+//console.log(our_candidate_image_clone);
 
 let candidate_block = document.getElementsByClassName('candidate-block')[2];
 //console.log(candidate_block);
@@ -607,7 +632,7 @@ let candidate_block = document.getElementsByClassName('candidate-block')[2];
 let candidate_block_result = document.getElementsByClassName('result')[2];
 //console.log(candidate_block_result);
 
-candidate_block_result.before(candidate_image_clone);
+candidate_block_result.before(our_candidate_image_clone);
 
 // Поправляем вёрстку:
 //------------------------
@@ -621,7 +646,7 @@ let candidate_shoes = document.getElementsByClassName('person-shoes')[0];
 //console.log(candidate_shoes);
 
 // console.log(sex);
-candidate_image_clone.style.marginRight = "30px";
+our_candidate_image_clone.style.marginRight = "30px";
 
  if(sex === "male") {
 
@@ -660,7 +685,7 @@ candidate_image_clone.style.marginRight = "30px";
     
 //  console.log(candidate_clothes.style[0]);
   let str_clothes = candidate_clothes.style.backgroundImage;
-  console.log(str_clothes);
+//  console.log(str_clothes);
 
   if(str_clothes.indexOf('clothes-4.png') === 25) { 
     candidate_clothes.style.backgroundSize = '77%';
@@ -680,18 +705,17 @@ candidate_image_clone.style.marginRight = "30px";
 }
 // -------------------------------
 
+
 reset.addEventListener("click", () => {
   reset_index = 1;
    main.style.display = "none";
    custom.style.display = "flex";
-   custom_candidate.style.display = "none";
-//   candidate_image_clone.style.display = "none";
+   our_custom_candidate.style.display = "none";
+   customStyle(sex);
    customInfo();
-   
+  
 });
 
 }); 
-
-
 
 });
