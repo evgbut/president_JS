@@ -45,6 +45,8 @@ custom_style.style.display = "block";
 
 const ready = document.getElementById("ready");
 const reset = document.getElementById("reset");
+const voting = document.getElementById("voting");
+const crime = document.getElementById("crime");
 
 let person_skin = document.getElementById("person-skin");
 let person_clothes = document.getElementById("person-clothes");
@@ -66,25 +68,37 @@ let our_candidate_image = document.getElementsByClassName('person construct')[0]
 
 customInfo();
 function customInfo() {
+
+  if(reset_index === 1) {
+//    console.log(reset_index);  
+    name_input.value = "";
+//    console.log(name_input.value);
+      age_input.value = "";
+//    console.log(age_input.value);
+      pol_views_input.value = "Либеральные";
+//    console.log(pol_views);  
+      biography_input.value = "";
+//    console.log(biography);  
+  } 
       
   name_input.onchange = function() {
     name = name_input.value;
-      console.log(name);
+//      console.log(name);
   };
 
   age_input.onchange = function() {
     age = age_input.value;
-      console.log(age);
+//      console.log(age);
     };
 
   pol_views_input.onchange = function() {
     pol_views = pol_views_input.value;
-        console.log(pol_views);
+//        console.log(pol_views);
     };
 
   biography_input.oninput = function() {
     biography = biography_input.value;
-        console.log(biography);
+//        console.log(biography);
       };
 
     let radios = document.getElementsByName("sex"); 
@@ -93,38 +107,7 @@ function customInfo() {
  let radio_female = radios[1]; 
 //   console.log(reset_index, sex);
 
-  if(reset_index === 1) {
-  console.log(reset_index);  
-    name_input.value = "";
-  console.log(name_input.value);
-    age_input.value = "";
-  console.log(age_input.value);
-    pol_views_input.value = "Либеральные";
-  console.log(pol_views);  
-    biography_input.value = "";
-  console.log(biography);  
-
-    name_input.onchange = function() {
-      name = name_input.value;
-        console.log(name);
-    };
   
-    age_input.onchange = function() {
-      age = age_input.value;
-        console.log(age);
-      };
-  
-    pol_views_input.onchange = function() {
-      pol_views = pol_views_input.value;
-          console.log(pol_views);
-      };
-  
-    biography_input.oninput = function() {
-      biography = biography_input.value;
-          console.log(biography);
-        };
-      
-  } 
 
 
   radio_male.addEventListener("click", () => {
@@ -583,10 +566,10 @@ function customClothes(sex) {
 
 
 ready.addEventListener("click", () => {
-console.log(reset_index);
+//console.log(reset_index);
 //customInfo();
-console.log(name, age, sex, pol_views);
-console.log(biography);   
+//console.log(name, age, sex, pol_views);
+//console.log(biography);   
 //console.log(sex);
 //console.log(our_candidate_image);
   
@@ -711,9 +694,77 @@ reset.addEventListener("click", () => {
    main.style.display = "none";
    custom.style.display = "flex";
    our_custom_candidate.style.display = "none";
-   customStyle(sex);
    customInfo();
-  
+   customStyle(sex);
+});
+
+// Сброс значений для голосования:  
+  let result_count = document.getElementsByClassName('result-count');
+//console.log(result_count);
+
+  let progress_bar_1 = document.getElementsByClassName('progress-bar-1');
+//console.log(progress_bar_1);
+
+  let progress_bar_2 = document.getElementsByClassName('progress-bar-2');
+//console.log(progress_bar_2);
+
+   result_count[0].innerHTML = '0%';
+   result_count[1].innerHTML = '0%';
+   result_count[2].innerHTML = '0%';
+
+progress_bar_1[0].style.height = '0%';
+progress_bar_2[0].style.height = '0%';
+progress_bar_2[1].style.height = '0%';
+
+voting.addEventListener("click", () => {
+// Расчёт случайных чисел голосования:
+function getRandomIntInclusive(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min; //Максимум и минимум включаются
+}
+let count_1 = getRandomIntInclusive(10,50);
+let count_2 = getRandomIntInclusive(20,40);
+let count_3 = 100 - (count_1 + count_2);
+//console.log(count_1, count_2, count_3);
+
+   result_count[0].innerHTML = count_1 + '%';
+   result_count[1].innerHTML = count_2 + '%';
+   result_count[2].innerHTML = count_3 + '%';
+
+progress_bar_1[0].style.height = count_1 + '%';
+progress_bar_2[0].style.height = count_2 + '%';
+progress_bar_2[1].style.height = count_3 + '%';
+
+});
+
+crime.addEventListener("click", () => {
+// Расчёт подтасованных чисел голосования:
+function getRandomIntInclusive(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min; //Максимум и минимум включаются
+}
+let count_1 = getRandomIntInclusive(10,50);
+let count_2 = getRandomIntInclusive(20,40);
+let count_3 = 100 - (count_1 + count_2);
+
+//console.log(count_1, count_2, count_3);
+
+let count_3_fake = Math.floor(count_3 * 1.25);
+let count_1_fake = getRandomIntInclusive(10,(100 - count_3_fake)/2);;
+let count_2_fake = 100 - (count_1_fake + count_3_fake);
+
+//console.log(count_1_fake, count_2_fake, count_3_fake);
+
+   result_count[0].innerHTML = count_1_fake + '%';
+   result_count[1].innerHTML = count_2_fake + '%';
+   result_count[2].innerHTML = count_3_fake + '%';
+
+progress_bar_1[0].style.height = count_1_fake + '%';
+progress_bar_2[0].style.height = count_2_fake + '%';
+progress_bar_2[1].style.height = count_3_fake + '%';
+
 });
 
 }); 
